@@ -1,21 +1,36 @@
-# Debate Presentation (đang chỉnh sửa)
+# Debate Raccoon Suite v2
 
-Tác giả: Nhật Huy, Quang Quý.
+Bản này tập trung vào local React test trước khi đưa lên server.
 
-Hệ thống website dùng để hiển thị quá trình tranh luận.
+## Chạy local
 
-Các tính năng chính:
-- Tính giờ cho 2 bên với nhiều bộ luật tranh luận / config time khác nhau.
-- Cho phép nhấn chuông để phản đối (đang chỉnh sửa).
-- Tham khảo ý kiến người xem / giám khảo trước khi kiến nghị diễn ra.
-- Cho phép người xem / giám khảo chấm điểm sau mỗi lượt.
-- Cho phép giám khảo yêu thích / không yêu thích luận điểm trong quá trình diễn ra tranh luận.
-- ...
+```bash
+npm config set registry https://registry.npmjs.org/
+npm install
+npm run dev
+```
 
-| Website | Ý nghĩa|
-|:---|:---|
-|`https://<domain>/` | Web trình chiếu |
-|`https://<domain>/host.html` | Web điều khiển |
-|`https://<domain>/user.html` | Web cho người xem / giám khảo |
-|`https://<domain>/ungho.html`| Web cho bên ủng hộ (dành cho việc nhấn chuông) |
-|`https://<domain>/phandoi.html`| Web cho bên phản đối (dành cho việc nhấn chuông) |
+Mở:
+- http://localhost:5173/
+- http://localhost:5173/host.html
+- http://localhost:5173/ungho.html
+- http://localhost:5173/phandoi.html
+- http://localhost:5173/user.html
+
+## Tính năng chính đã thêm
+
+- đồng hồ chạy theo `Date.now()` để sát 1 giây hơn
+- import ảnh thí sinh bằng file local
+- import âm thanh bằng file local
+- host bật/tắt kiến nghị, lượt, intro, điểm overlay, thống kê
+- giao diện trình chiếu thiên về style Teen hơn
+- chuông, chấp nhận câu hỏi, gửi điểm, gửi thống kê đều có hook phát sound
+- khi host chấp nhận câu hỏi, màn hình đội còn lại nhận tín hiệu và chạy timer câu hỏi
+- thêm chế độ thống kê cho giám khảo và nhóm
+- thống kê có biểu đồ tròn ở màn hình trình chiếu
+- chấm điểm và thống kê có thể mở theo khung thời gian
+
+## Lưu ý
+
+- realtime hiện dùng `BroadcastChannel + localStorage`, hợp để test local hoặc nhiều tab/trình duyệt cùng máy. Muốn dùng nhiều thiết bị trong lớp, nên thay bằng Firebase hoặc WebSocket.
+- âm thanh từ file local sẽ được lưu dạng data URL trong localStorage của trình duyệt.
